@@ -1,0 +1,33 @@
+INSTRUCTION
+===========
+
+3 test cases are provided in 3 directories. File names in these directories
+follow the description of the contest document.
+
+In addition, 2 scripts are provided, example.pl and calc_score.pl, for a simple
+demonstration of calculationg arrival times and endpoint slacks, and for
+calculating accuracy scores, respectively.
+
+To use example.pl, please provide options as the following:
+./example.pl -g GRAPH_CSV_FILE -c CHECK_CSV_FILE -e ENDPOINT_LIST_FILE -o SLACK_OUTPUT_FILE
+
+For example:
+perl ./example.pl -g inv/inv.graph.csv -c inv/inv.setup_check.csv -e inv/inv.endpoints.list -o test.csv
+
+To calculate accuracy score, use calc_score.pl with following options:
+./calc_score.pl -r REFRENCE_SLACK -t CALCULATED_SLACK -s FULL_SCORE -e ENDPOINT_LIST_FILE
+
+For example:
+perl ./calc_score.pl -r simple.slack.csv.gz -t test.csv -s 35 -e simple.endpoints.list
+
+Note that -e option is optional. If -e option is omitted, this script checks global slack result,
+i.e. all vertices in reference slack file are checked. If -e option is provided, only vertices
+listed in endpoint list are checked.
+
+
+HISTORY OF UPDATES
+==================
+2023/10/25: Added a new case called "inv" for clock phase inversion, and updated case3 data
+            with corrected sigma settings.
+2023/11/01: Added case5 with larger sigma values. Added case2 without slack result. Updated 
+            calc_score.pl to provide more information.
